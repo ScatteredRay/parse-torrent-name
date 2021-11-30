@@ -7,9 +7,20 @@ var core = require('../core');
  * In case of two groups - 1st is raw, 2nd is clean.
  */
 var patterns = {
-  season: /([Ss]?([0-9]{1,2}))[Eex]/,
-  episode: /([Eex]([0-9]{2})(?:[^0-9]|$))/,
-  year: /([\[\(]?((?:19[0-9]|20[01])[0-9])[\]\)]?)/,
+  sequence: [
+    /([Pp]art\.([0-9]{1,2}))/,
+    /(([0-9]{1,2})of[0-9]{1,2})/
+  ],
+  season: [
+    /([Ss]([0-9]{1,2}))/,
+    /([Ss]?([0-9]{1,2}))[Eex]/,
+    /((?:\.|^|(?:-? ))([0-9]{2})[0-9]{2}?)/
+  ],
+  episode: [
+    /((?:[Eex])([0-9]{2})(?:[^0-9]|$))/,
+    /((?:[0-9]{2})([0-9]{2})(?:[^0-9]|$))/
+  ],
+  year: /([\[\(]?((?:19[0-9]|20[0-2])[0-9])[\]\)]?)/,
   resolution: /(([0-9]{3,4}p))[^M]/,
   quality: /(?:PPV\.)?[HP]DTV|(?:HD)?CAM|B[rR]Rip|TS|(?:PPV )?WEB-?DL(?: DVDRip)?|H[dD]Rip|DVDRip|DVDRiP|DVDRIP|CamRip|W[EB]B[rR]ip|[Bb]lu[Rr]ay|DvDScr|hdtv/,
   codec: /xvid|x264|h\.?264/i,
@@ -45,50 +56,86 @@ core.on('setup', function (data) {
 core.on('start', function() {
   var key, match, index, clean, part;
 
+  let skipList = [];
+
   for(key in patterns) {
     if(patterns.hasOwnProperty(key)) {
-      if(!(match = torrent.name.match(patterns[key]))) {
+      let patternList = [];
+      if(skipList.includes(key)) {
         continue;
       }
-
-      index = {
-        raw:   match[1] ? 1 : 0,
-        clean: match[1] ? 2 : 0
-      };
-
-      if(types[key] && types[key] === 'boolean') {
-        clean = true;
+      if(Array.isArray(patterns[key])) {
+        patternList = patterns[key];
       }
       else {
-        clean = match[index.clean];
-
-        if(types[key] && types[key] === 'integer') {
-          clean = parseInt(clean, 10);
-        }
+        patternList.push(patterns[key]);
       }
-
-      if(key === 'group') {
-        if(clean.match(patterns.codec) || clean.match(patterns.quality)) {
+      for(let pattern of patternList) {
+        if(!(match = torrent.name.match(pattern))) {
           continue;
         }
 
-        if(clean.match(/[^ ]+ [^ ]+ .+/)) {
-          key = 'episodeName';
+        index = {
+          raw:   match[1] ? 1 : 0,
+          clean: match[1] ? 2 : 0
+        };
+
+        if(key === 'episode' || key === 'season') {
+          console.log("MATCH");
+          if(match[index.raw].match(patterns.year)) {
+            continue;
+          }
+          let bSeq = false;
+          for(let seq of patterns.sequence) {
+            if(match[index.raw].match(seq)) {
+              bSeq = true;
+            }
+          }
+          if(bSeq) {
+            continue;
+          }
         }
+
+        if(key === 'sequence') {
+          key = 'episode';
+          skipList.push('episode');
+        }
+
+        if(types[key] && types[key] === 'boolean') {
+          clean = true;
+        }
+        else {
+          clean = match[index.clean];
+
+          if(types[key] && types[key] === 'integer') {
+            clean = parseInt(clean, 10);
+          }
+        }
+
+        if(key === 'group') {
+          if(clean.match(patterns.codec) || clean.match(patterns.quality)) {
+            continue;
+          }
+
+          if(clean.match(/[^ ]+ [^ ]+ .+/)) {
+            key = 'episodeName';
+          }
+        }
+
+        part = {
+          name: key,
+          match: match,
+          raw: match[index.raw],
+          clean: clean
+        };
+
+        if(key === 'episode') {
+          core.emit('map', torrent.name.replace(part.raw, '{episode}'));
+        }
+
+        core.emit('part', part);
+        break;
       }
-
-      part = {
-        name: key,
-        match: match,
-        raw: match[index.raw],
-        clean: clean
-      };
-
-      if(key === 'episode') {
-        core.emit('map', torrent.name.replace(part.raw, '{episode}'));
-      }
-
-      core.emit('part', part);
     }
   }
 

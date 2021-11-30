@@ -246,7 +246,9 @@ var torrents = [
   {
     name: 'WWE Monday Night Raw 3rd Nov 2014 HDTV x264-Sir Paul',
     title: 'WWE Monday Night Raw',
-    garbage: '3rd Nov'
+    garbage: '3rd Nov',
+    season: undefined,
+    episode: undefined
   },
   {
     name: 'Jack.And.The.Cuckoo-Clock.Heart.2013.BRRip XViD',
@@ -387,6 +389,45 @@ var torrents = [
     resolution: '720p',
     group: 'Kybik.v.Kybe',
     episodeName: undefined
+  },
+  {
+    name: "The.Colour.of.Magic.Part.2.2008.1080p.BluRay.mkv",
+    title: "The Colour of Magic",
+    season: undefined,
+    episode: 2,
+    year: 2008,
+    resolution: "1080p",
+    quality: "BluRay",
+  },
+  {
+    name: "Wilfred.S03E11.Stagnation.1080p.WEB-DL.DD5.1.H.264-NTb.mkv",
+    title: "Wilfred",
+    season: 3,
+    episode: 11,
+    episodeName: "Stagnation",
+    resolution: "1080p",
+    quality: "WEB-DL",
+    codec: "H.264",
+    excess: undefined
+  },
+  {
+    name: "National.Geographic.Romes.Greatest.Battles.1of2.Battle.of.Actium.PDTV.XviD.AC3.avi",
+    title: "National Geographic Romes Greatest Battles",
+    season: undefined,
+    episode: 1
+  },
+  {
+    name: "Secret.Diary.of.a.Call.Girl.S01E08.720p.HDTV.x264-CtrlHD.srt",
+    title: "Secret Diary of a Call Girl",
+    season: 1,
+    episode: 8
+  },
+  {
+    name: "strange.sex.0106.720p-yestv.mkv",
+    title: "strange sex",
+    season: 1,
+    episode: 6,
+    resolution: "720p"
   }
 ];
 
