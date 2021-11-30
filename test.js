@@ -417,7 +417,7 @@ var torrents = [
     episode: 1
   },
   {
-    name: "Secret.Diary.of.a.Call.Girl.S01E08.720p.HDTV.x264-CtrlHD.srt",
+    name: "Secret.Diary.of.a.Call.Girl.S01E08.720p.HDTV.x264-CtrlHD",
     title: "Secret Diary of a Call Girl",
     season: 1,
     episode: 8
@@ -428,6 +428,27 @@ var torrents = [
     season: 1,
     episode: 6,
     resolution: "720p"
+  },
+  {
+    name: "nashville.2012.116.hdtv-lol.mp4",
+    title: "nashville",
+    season: 1,
+    episode: 16
+  },
+  {
+    name: "i.videogame.ep05.se.pdtv.xvid-fisk",
+    title: "i videogame",
+    episode: 5
+  },
+  {
+    name: "I.VideoGame.Ep.02.DSR.XViD-WPi.avi",
+    title: "I VideoGame",
+    episode: 2
+  },
+  {
+    name: "1e39c-White Gloves.mkv",
+    season: 1,
+    episode: 39 // 39c?!
   }
 ];
 
