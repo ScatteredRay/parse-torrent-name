@@ -30,32 +30,53 @@ core.on('map', function (map) {
 });
 
 core.on('end', function () {
-  var clean, groupPattern, episodeNamePattern;
 
   // clean up excess
-  clean = raw.replace(/(^[-\. ]+)|([-\. ]+$)/g, '');
+  let clean = raw.replace(/(^[-\. ]+)|([-\. ]+$)/g, '');
   clean = clean.replace(/[\(\)\/]/g, ' ');
-  clean = clean.split(/\.\.+| +/).filter(Boolean);
+  clean = clean.split(/\.\.*| +/).filter(Boolean);
+
 
   if(clean.length !== 0) {
-    groupPattern = escapeRegex(clean[clean.length - 1] + groupRaw) + '$';
+    // let groupPattern = escapeRegex(clean[clean.length - 1] + groupRaw) + '$';
+
+    // if(torrent.name.match(new RegExp(groupPattern))) {
+    //   core.emit('late', {
+    //     name: 'group',
+    //     clean: clean.pop() + groupRaw
+    //   });
+    // }
+
+    if(torrent.map && clean[0]) {
+      torrent.map = torrent.map.replace(/[. -]/g, '')
+      let episodeName = '';
+      while(clean.length > 0) {
+        let episodeNamePattern = '{episode}' + escapeRegex(((episodeName.replace(/ /g, ''))+clean[0]).replace(/_+$/, ''));
+
+        if(torrent.map.match(new RegExp(episodeNamePattern))) {
+          episodeName += ' '  + clean.shift();
+        }
+        else {
+          break
+        }
+      }
+      if(episodeName.length > 0) {
+        core.emit('late', {
+          name: 'episodeName',
+          clean: episodeName
+        });
+      }
+    }
+  }
+
+  if(clean.length !== 0) {
+    let groupPattern = escapeRegex(clean[clean.length - 1] + groupRaw) + '$';
 
     if(torrent.name.match(new RegExp(groupPattern))) {
       core.emit('late', {
         name: 'group',
         clean: clean.pop() + groupRaw
       });
-    }
-
-    if(torrent.map && clean[0]) {
-      episodeNamePattern = '{episode}' + escapeRegex(clean[0].replace(/_+$/, ''));
-
-      if(torrent.map.match(new RegExp(episodeNamePattern))) {
-        core.emit('late', {
-          name: 'episodeName',
-          clean: clean.shift()
-        });
-      }
     }
   }
 

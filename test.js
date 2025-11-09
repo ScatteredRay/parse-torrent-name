@@ -446,9 +446,208 @@ var torrents = [
     episode: 2
   },
   {
-    name: "1e39c-White Gloves.mkv",
+    name: "Mad.Men.S05/Mad.Men.S05E09.HDTV.x264-ASAP.mp4",
+    title: "Mad Men",
+    season: 5,
+    episode: 9
+  },
+  {
+    name: "1e39c-White Gloves",
     season: 1,
-    episode: 39 // 39c?!
+    episode: 39, // 39c?!
+    group: "White Gloves"
+  },
+  {
+    name: 'Xena.Warrior.Princess.s06e21.a.friend.in.need.ntsc.dvd.dd5.1.x264hi10-lightspeed',
+    title: 'Xena Warrior Princess',
+    season: 6,
+    episode: 21,
+    group: 'lightspeed',
+    episodeName: 'a friend in need',
+    excess: undefined
+  },
+  {
+    name: 'survivor.s04e06.the.underdogs.dvdrip.x264',
+    title: 'survivor',
+    season: 4,
+    episode: 6,
+    quality: 'dvdrip',
+    codec: 'x264',
+    excess: undefined
+  },
+  {
+    name: 'Coupling.S01E01.PAL.DVD.AC3.x264-SDB',
+    title: 'Coupling',
+    season: 1,
+    episode: 1,
+    quality: 'DVD',
+    codec: 'x264',
+    group: 'SDB',
+    audio: 'AC3',
+    format: 'PAL'
+  },
+  {
+    name: 'Stacked S01E04 NTSC DVD DD2.0 x264-Hype',
+    title: 'Stacked',
+    season: 1,
+    episode: 4,
+    format: 'NTSC',
+    quality: 'DVD',
+    audio: 'DD2.0',
+    codec: 'x264',
+    group: 'Hype',
+    excess: undefined
+  },
+  {
+    name: 'TaleSpin.S01E55.Destiny.Rides.Again.480p.DVDRip.DD2.0.x264-SA89',
+    season: 1,
+    episode: 55,
+    resolution: '480p',
+    quality: 'DVDRip',
+    codec: 'x264',
+    audio: 'DD2.0',
+    group: 'SA89',
+    title: 'TaleSpin',
+    episodeName: 'Destiny Rides Again',
+    excess: undefined
+  },
+  {
+    name: 'Peep.Show.S04E06.Wedding.DVDRip.DD2.0.x264-DEEP',
+    title: 'Peep Show',
+    season: 4,
+    episode: 6,
+    quality: 'DVDRip',
+    audio: 'DD2.0',
+    codec: 'x264',
+    group: 'DEEP',
+    excess: undefined
+  },
+  {
+    name: 'Below.Deck.Mediterranean.S05E02.Cant.Touch.This.1080p.WEB.h264-ROBOTS',
+    title: 'Below Deck Mediterranean',
+    season: 5,
+    episode: 2,
+    episodeName: 'Cant Touch This',
+    resolution: "1080p",
+    excess: undefined
+  },
+  {
+    name: 'Expedition.Unknown.S09E07.Mysteries.of.Bermuda.Triangle.1080p.WEB.x264-ROBOTS',
+    title: 'Expedition Unknown',
+    season: 9,
+    episode: 7,
+    episodeName: 'Mysteries of Bermuda Triangle',
+    resolution: "1080p",
+    quality: 'WEB',
+    codec: 'x264',
+    group: 'ROBOTS',
+    excess: undefined
+  },
+  {
+    name: 'Holiday.Dream.Home.S01E11.Palisades.and.Sand.720p.WEB.h264-KOMPOST',
+    title: 'Holiday Dream Home',
+    season: 1,
+    episode: 11,
+    episodeName: 'Palisades and Sand',
+    resolution: '720p',
+    quality: 'WEB',
+    codec: 'h264',
+    group: 'KOMPOST',
+    format: undefined,
+    excess: undefined
+  },
+  {
+    name: 'Animaniacs.1e22b-Plane Pal.DVDRip.x264-SDxT',
+    title: 'Animaniacs',
+    season: 1,
+    episode: 22,
+    episodeName: 'Plane Pal',
+    format: undefined,
+    excess: undefined
+  },
+  {
+    name: '1e05-Taming of the Screwy',
+    season: 1,
+    episode: 5,
+    episodeName: 'Taming of the Screwy'
+  },
+  {
+    name: 'Archer.S04E11.The.Papal.Chase.2013.BluRay.1080p.DTS.x264-Penumbra',
+    title: 'Archer',
+    season: 4,
+    episode: 11,
+    year: 2013,
+    quality: 'BluRay',
+    resolution: '1080p',
+    audio: 'DTS',
+    codec: 'x264',
+    group: 'Penumbra',
+    episodeName: 'The Papal Chase',
+    format: undefined,
+    excess: undefined
+  },
+  {
+    name: 'The.Untamed.2019.E35.V2.2160p.WEB-DL.H265.AAC-LeagueWEB',
+    title: 'The Untamed',
+    year: 2019,
+    episode: 35,
+    resolution: '2160p',
+    quality: 'WEB-DL',
+    codec: 'H265',
+    audio: 'AAC',
+    group:'LeagueWEB', 
+    excess: undefined
+  },
+  {
+    name: 'rupauls.drag.race.s16e06.2160p.web.h265-hotdogwater',
+    title: 'rupauls drag race',
+    season: 16,
+    episode: 6,
+    resolution: '2160p',
+    quality: 'web',
+    codec: 'h265',
+    group: 'hotdogwater'
+  },
+  {
+    name: 'The.White.Lotus.S01E05.The.Lotus-Eaters.1080p.AMZN.WEB-DL.DDP5.1.H.264-NTb',
+    title: 'The White Lotus',
+    season: 1,
+    episode: 5,
+    episodeName: 'The Lotus-Eaters',
+    group: 'NTb'
+  },
+  {
+    name: 'The.Afterparty.S01E07.Danner.2160p.ATVP.WEB-DL.DDP5.1.Atmos.HDR.H.265-NOSiViD',
+    audio: 'Atmos'
+  },
+  {
+    name: 'Ducktales Season 2',
+    title: 'Ducktales',
+    season: 2
+  },
+  {
+    name: 'DuckTales - 2x10 - Money to Burn - Super Ducktales (Part 5).DVDRip.x264.[gd]',
+    title: 'DuckTales',
+    season: 2,
+    episode: 10
+  },
+  {
+    name: 'RuPauls.Drag.Race.All.Stars.S09E12.Grand.Finale.Variety.Extravaganza.Part.2.1080p.AMZN.WEB-DL.DDP2.0.H.264-MADSKY.mkv',
+    title: 'RuPauls Drag Race All Stars',
+    season: 9,
+    episode: 12
+  },
+  {
+    name: '2.Broke.Girls.S01E23.And.Martha.Stewart.Have.a.Ball.(Part.1.).1080p.WEB-DL.AAC2.0.DD5.1.h-264-BTN.mkv.mkv',
+    title: '2 Broke Girls',
+    season: 1,
+    episode: 23
+  },
+  {
+    name: 'Below.Deck.Sailing.Yacht.S04E18.Below.Deck.Sailing.Yacht.Reunion.Part.1.1080p.AMZN.WEB-DL.DDP2.0.H.264-NTb.mkv',
+    title: 'Below Deck Sailing Yacht',
+    season: 4,
+    episode: 18
   }
 ];
 
